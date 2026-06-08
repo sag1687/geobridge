@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Main dialog for the VertoBridge Italia QGIS plugin."""
+"""Main dialog for the GeoBridgeIT QGIS plugin."""
 
 from __future__ import annotations
 
@@ -35,19 +35,19 @@ from .layer_converter import (
     convert_vector_layer,
 )
 from .qt_compat import dialog_close_button, rich_text, wait_cursor, window_modal
-from .verto_client import DEFAULT_API_URL, DEFAULT_SRS, VertoApiError, VertoClient
+from .api_client import DEFAULT_API_URL, DEFAULT_SRS, ApiError, ApiClient
 
 
-class VertoDialog(QDialog):
+class GeoBridgeDialog(QDialog):
     def __init__(self, iface, parent=None):
         super().__init__(parent or iface.mainWindow())
         self.iface = iface
-        self.client = VertoClient()
+        self.client = ApiClient()
         self.max_coord = 32000
         self.srs_list = list(DEFAULT_SRS)
         self.srs_combos = []
 
-        self.setWindowTitle("VertoBridge Italia")
+        self.setWindowTitle("GeoBridgeIT")
         self.resize(720, 520)
         self._apply_cyber_mint_theme()
         self._build_ui()
@@ -57,7 +57,7 @@ class VertoDialog(QDialog):
     def _build_ui(self):
         layout = QVBoxLayout(self)
         intro = QLabel(
-            "Client QGIS non ufficiale per le API Verto Online dell'Istituto Geografico Militare. "
+            "Client QGIS non ufficiale per le API servizio API IGM dell'Istituto Geografico Militare. "
             "Conversione planimetrica; quote non trasformate."
         )
         intro.setWordWrap(True)
@@ -147,7 +147,7 @@ class VertoDialog(QDialog):
 
         info = QLabel(
             "Il plugin crea un layer temporaneo e copia gli attributi. "
-            "Tutti i vertici XY sono inviati al servizio Verto Online in blocchi."
+            "Tutti i vertici XY sono inviati al servizio servizio API IGM in blocchi."
         )
         info.setWordWrap(True)
         layout.addWidget(info)
@@ -159,14 +159,14 @@ class VertoDialog(QDialog):
         tab = QWidget()
         layout = QVBoxLayout(tab)
 
-        title = QLabel("VertoBridge Italia")
+        title = QLabel("GeoBridgeIT")
         title.setObjectName("infoTitle")
         layout.addWidget(title)
 
         details = QLabel(
             "<b>Autore client:</b> Dott. Sarino Alfonso Grande<br/>"
             "<b>Licenza client:</b> GPL-2.0-or-later<br/>"
-            "<b>Servizio API:</b> Verto Online, Istituto Geografico Militare<br/>"
+            "<b>Servizio API:</b> servizio API IGM, Istituto Geografico Militare<br/>"
             "<b>Relazione con IGM:</b> client non ufficiale, non approvato o certificato da IGM"
         )
         details.setObjectName("infoDetails")
@@ -260,17 +260,17 @@ class VertoDialog(QDialog):
             self.srs_list = info["srsSupportati"]
             self._populate_srs_combos()
             self.layer_status_label.setText(
-                "API Verto Online raggiunta. Massimo coordinate per richiesta: %s."
+                "API servizio API IGM raggiunta. Massimo coordinate per richiesta: %s."
                 % self.max_coord
             )
-        except (VertoApiError, ValueError) as exc:
+        except (ApiError, ValueError) as exc:
             self.srs_list = list(DEFAULT_SRS)
             self._populate_srs_combos()
             self.layer_status_label.setText(
                 "API non raggiungibile ora: uso elenco EPSG locale. Dettaglio: %s" % exc
             )
             if not silent:
-                QMessageBox.warning(self, "Verto Online", str(exc))
+                QMessageBox.warning(self, "servizio API IGM", str(exc))
         finally:
             QApplication.restoreOverrideCursor()
 
@@ -311,7 +311,7 @@ class VertoDialog(QDialog):
         if epsg:
             self._set_combo_epsg(self.layer_in_combo, epsg)
         if not self.output_name_edit.text().strip():
-            self.output_name_edit.setText("%s - Verto" % layer.name())
+            self.output_name_edit.setText("%s - GeoBridge" % layer.name())
 
     def convert_coordinate(self):
         try:
@@ -323,7 +323,7 @@ class VertoDialog(QDialog):
             converted = self.client.convert(in_epsg, out_epsg, [{"e": e, "n": n}])[0]
             self.coord_result_e.setText("%.12f" % converted["e"])
             self.coord_result_n.setText("%.12f" % converted["n"])
-        except (ValueError, VertoApiError) as exc:
+        except (ValueError, ApiError) as exc:
             QMessageBox.warning(self, "Conversione coordinata", str(exc))
         finally:
             QApplication.restoreOverrideCursor()
@@ -339,10 +339,10 @@ class VertoDialog(QDialog):
         in_epsg = self._combo_epsg(self.layer_in_combo)
         out_epsg = self._combo_epsg(self.layer_out_combo)
         output_name = (
-            self.output_name_edit.text().strip() or "%s - Verto" % layer.name()
+            self.output_name_edit.text().strip() or "%s - GeoBridge" % layer.name()
         )
         progress = QProgressDialog(
-            "Preparazione conversione Verto Online", "Annulla", 0, 0, self
+            "Preparazione conversione servizio API IGM", "Annulla", 0, 0, self
         )
         progress.setWindowModality(window_modal())
         progress.show()
@@ -374,7 +374,7 @@ class VertoDialog(QDialog):
             )
         except LayerConversionCancelled:
             self.layer_status_label.setText("Conversione annullata.")
-        except (LayerConversionError, VertoApiError, StopIteration) as exc:
+        except (LayerConversionError, ApiError, StopIteration) as exc:
             QMessageBox.warning(self, "Conversione layer", str(exc))
         finally:
             QApplication.restoreOverrideCursor()
@@ -549,17 +549,17 @@ def _notice_html():
       b { color: #A8FFF0; }
     </style>
     <h3>Informativa IGM e licenza</h3>
-    <p><b>Nome del client:</b> VertoBridge Italia.</p>
+    <p><b>Nome del client:</b> GeoBridgeIT.</p>
     <p><b>Autore client:</b> Dott. Sarino Alfonso Grande.</p>
     <p><b>Natura del client:</b> client QGIS non ufficiale, indipendente e
     non sviluppato, approvato, certificato, distribuito o garantito
     dall'Istituto Geografico Militare.</p>
-    <p><b>Servizio usato:</b> Verto Online API, servizio dell'Istituto
+    <p><b>Servizio usato:</b> API IGM, servizio dell'Istituto
     Geografico Militare.</p>
     <p><b>Fonte ufficiale del servizio:</b>
     <a href="https://igmi.esercito.difesa.it/servizi/verto-online/">https://igmi.esercito.difesa.it/servizi/verto-online/</a></p>
     <p><b>Endpoint API:</b> __API_URL__</p>
-    <p><b>Titolarita IGM:</b> il servizio Verto Online, il software
+    <p><b>Titolarita IGM:</b> il servizio servizio API IGM, il software
     sottostante, l'infrastruttura, le denominazioni istituzionali, le API e
     l'implementazione restano di titolarita dell'Istituto Geografico Militare.
     Il plugin non trasferisce, concede o rivendica alcun diritto su tali

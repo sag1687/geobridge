@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-"""QGIS plugin entry point for VertoBridge Italia."""
+"""QGIS plugin entry point for GeoBridgeIT."""
 
 
 def classFactory(iface):
-    from .plugin import VertoBridgeItaliaPlugin
+    from .plugin import GeoBridgeITPlugin
 
-    return VertoBridgeItaliaPlugin(iface)
+    return GeoBridgeITPlugin(iface)

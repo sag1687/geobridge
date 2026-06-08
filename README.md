@@ -1,11 +1,11 @@
-# 🌐 VertoBridge Italia per QGIS
+# 🌐 GeoBridgeIT per QGIS
 
 [![QGIS Version](https://img.shields.io/badge/QGIS-3.22%2B-green.svg)](https://qgis.org/)
 [![License: GPL v2+](https://img.shields.io/badge/License-GPL%20v2+-blue.svg)](https://www.gnu.org/licenses/gpl-2.0)
 [![Status: Stable](https://img.shields.io/badge/Status-Stable-success.svg)]()
 [![Version: 1.0.0](https://img.shields.io/badge/Version-1.0.0-blue.svg)]()
 
-**VertoBridge Italia** è un client QGIS *non ufficiale* per interfacciarsi con il servizio [Verto Online API](https://igmi.esercito.difesa.it/servizi/verto-online/) fornito dall'**Istituto Geografico Militare (IGM)**. Permette la conversione planimetrica di singole coordinate e di interi layer vettoriali direttamente dall'interfaccia di QGIS.
+**GeoBridgeIT** è un client QGIS *non ufficiale* per interfacciarsi con il servizio [API IGM](https://igmi.esercito.difesa.it/servizi/verto-online/) fornito dall'**Istituto Geografico Militare (IGM)**. Permette la conversione planimetrica di singole coordinate e di interi layer vettoriali direttamente dall'interfaccia di QGIS.
 
 Supporta QGIS 3 (tramite Qt5) e QGIS 4 (tramite Qt6) in modo trasparente.
 
@@ -15,9 +15,9 @@ Supporta QGIS 3 (tramite Qt5) e QGIS 4 (tramite Qt6) in modo trasparente.
 
 Questo plugin è uno strumento indipendente sviluppato da terzi (Dott. Sarino Alfonso Grande) e **NON è in alcun modo sviluppato, approvato, certificato, distribuito o garantito dall'Istituto Geografico Militare (IGM)**.
 
-* **Servizio Verto Online:** Il servizio Verto Online, l'infrastruttura server, le API, gli algoritmi di calcolo, il marchio istituzionale e i risultati delle elaborazioni sono e restano di **esclusiva proprietà dell'Istituto Geografico Militare**.
+* **Servizio API IGM:** Il servizio API IGM, l'infrastruttura server, le API, gli algoritmi di calcolo, il marchio istituzionale e i risultati delle elaborazioni sono e restano di **esclusiva proprietà dell'Istituto Geografico Militare**.
 * **Nessuna Appropriazione:** L'autore di questo plugin non si appropria né rivendica alcun diritto sui prodotti, servizi o denominazioni dell'IGM. Il plugin agisce esclusivamente come "ponte" (client) verso un endpoint pubblico.
-* **Condizioni d'Uso:** L'utilizzo del servizio Verto tramite questo plugin è soggetto esclusivamente alle [condizioni d'uso ufficiali pubblicate da IGM](https://igmi.esercito.difesa.it/servizi/verto-online/). L'invio di coordinate all'endpoint pubblico implica l'accettazione di tali condizioni.
+* **Condizioni d'Uso:** L'utilizzo del servizio IGM tramite questo plugin è soggetto esclusivamente alle [condizioni d'uso ufficiali pubblicate da IGM](https://igmi.esercito.difesa.it/servizi/verto-online/). L'invio di coordinate all'endpoint pubblico implica l'accettazione di tali condizioni.
 
 Per ulteriori dettagli normativi, consultare i file `NOTICE.md` e `LEGAL_IGM_PUBLICATION_REVIEW.md` inclusi nel repository.
 
@@ -57,11 +57,11 @@ Esempio di payload generato per la conversione:
 Attualmente il plugin può essere installato manualmente:
 
 1. Scaricare il repository o il pacchetto ZIP.
-2. Copiare la cartella `vertobridge_italia` all'interno della directory dei plugin del profilo di QGIS.
+2. Copiare la cartella `geobridgeit` all'interno della directory dei plugin del profilo di QGIS.
    * **Linux:** `~/.local/share/QGIS/QGIS3/profiles/default/python/plugins/`
    * **Windows:** `%APPDATA%\QGIS\QGIS3\profiles\default\python\plugins\`
    * **macOS:** `~/Library/Application Support/QGIS/QGIS3/profiles/default/python/plugins/`
-3. Aprire QGIS, andare su **Plugin > Gestisci e installa plugin...**, cercare *VertoBridge Italia* e attivarlo spuntando la casella.
+3. Aprire QGIS, andare su **Plugin > Gestisci e installa plugin...**, cercare *GeoBridgeIT* e attivarlo spuntando la casella.
 
 ## 👤 Autore e Sviluppo
 

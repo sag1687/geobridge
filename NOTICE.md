@@ -2,10 +2,10 @@
 
 ## Paternita, titolarita e non affiliazione
 
-VertoBridge Italia e' un client QGIS non ufficiale, indipendente, sviluppato
+GeoBridgeIT e' un client QGIS non ufficiale, indipendente, sviluppato
 da Dott. Sarino Alfonso Grande.
 
-Il plugin usa il servizio Verto Online API dell'Istituto Geografico Militare:
+Il plugin usa il servizio API IGM dell'Istituto Geografico Militare:
 
 https://igmi.esercito.difesa.it/servizi/verto-online/
 
@@ -13,7 +13,7 @@ Endpoint API:
 
 https://igmi.esercito.difesa.it/porta-magna/wps/volapi
 
-Il servizio Verto Online, il software sottostante, l'infrastruttura, le API,
+Il servizio servizio API IGM, il software sottostante, l'infrastruttura, le API,
 le denominazioni istituzionali e l'implementazione restano di titolarita
 dell'Istituto Geografico Militare. Questo plugin non e' sviluppato,
 approvato, certificato, distribuito, garantito o supportato da IGM e non

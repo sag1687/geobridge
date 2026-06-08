@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Conversion helpers for QGIS vector layers using Verto Online."""
+"""Conversion helpers for QGIS vector layers using servizio API IGM."""
 
 from __future__ import annotations
 
@@ -32,11 +32,11 @@ def convert_vector_layer(
     progress=None,
     cancel_requested=None,
 ):
-    """Convert every vertex of a vector layer through the Verto Online API.
+    """Convert every vertex of a vector layer through the API IGM.
 
     Returns a memory layer with copied attributes and transformed geometries.
     The service is planimetric: Z/M values, if present, are left unchanged by
-    QGIS geometry copying while X/Y are replaced with Verto results.
+    QGIS geometry copying while X/Y are replaced with GeoBridge results.
     """
 
     if not source_layer or not source_layer.isValid():
@@ -79,7 +79,7 @@ def convert_vector_layer(
     output_layer = _make_memory_layer(
         source_layer,
         int(out_epsg),
-        output_name or "%s - Verto EPSG:%s" % (source_layer.name(), out_epsg),
+        output_name or "%s - GeoBridge EPSG:%s" % (source_layer.name(), out_epsg),
     )
     provider = output_layer.dataProvider()
     provider.addAttributes(

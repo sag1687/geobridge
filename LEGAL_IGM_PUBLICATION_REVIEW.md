@@ -2,22 +2,22 @@
 
 Data verifica: 2026-06-08
 
-Plugin: VertoBridge Italia
+Plugin: GeoBridgeIT
 
 Autore client: Dott. Sarino Alfonso Grande
 
 ## Sintesi operativa
 
 Sulla base delle informazioni pubblicate da IGM nella pagina ufficiale di
-Verto Online e nel manuale API collegato, non emerge un divieto esplicito alla
+servizio API IGM e nel manuale API collegato, non emerge un divieto esplicito alla
 pubblicazione di un client QGIS non ufficiale che interroga l'endpoint pubblico
-Verto Online. Al contrario, il manuale API IGM incoraggia lo sviluppo e la
+servizio API IGM. Al contrario, il manuale API IGM incoraggia lo sviluppo e la
 divulgazione di client di vario tipo, inclusi plugin per software GIS. La
 pubblicazione resta comunque da fare con prudenza e alle condizioni sotto
 indicate, purche' il plugin:
 
 - non si presenti come prodotto ufficiale IGM;
-- riporti in modo chiaro la titolarita IGM del servizio Verto Online;
+- riporti in modo chiaro la titolarita IGM del servizio servizio API IGM;
 - rispetti le condizioni d'uso pubblicate da IGM;
 - non usi loghi, stemmi o segni istituzionali IGM senza autorizzazione;
 - non sovraccarichi il servizio e non aggiri limiti tecnici o condizioni;
@@ -32,11 +32,11 @@ licenza, il nome scelto e le modalita di uso dell'API.
 
 ## Fonti ufficiali verificate
 
-Pagina ufficiale Verto Online:
+Pagina ufficiale servizio API IGM:
 
 https://igmi.esercito.difesa.it/servizi/verto-online/
 
-Manuale API Verto Online:
+Manuale API servizio API IGM:
 
 https://igmi.esercito.difesa.it/porta-magna/allegati/manuale-verto-online.pdf
 
@@ -55,11 +55,11 @@ pagine web e plugin per software GIS. Questo e' l'elemento piu' favorevole
 alla pubblicazione del plugin, perche' il caso d'uso del client QGIS rientra
 direttamente nel tipo di integrazione descritto.
 
-Il plugin non incorpora software IGM, non replica il servizio Verto Online e
+Il plugin non incorpora software IGM, non replica il servizio servizio API IGM e
 non include dati IGM. Si limita a inviare richieste al servizio remoto
 documentato e a mostrare o trasformare localmente il risultato.
 
-Il plugin usa un nome distinto, "VertoBridge Italia", e deve mantenere sempre
+Il plugin usa un nome distinto, "GeoBridgeIT", e deve mantenere sempre
 la dicitura "client QGIS non ufficiale". Questo riduce il rischio di
 confusione con un prodotto IGM ufficiale.
 
@@ -69,7 +69,7 @@ Anche se la pubblicazione appare compatibile con quanto pubblicato da IGM,
 restano rischi residui:
 
 - IGM puo modificare condizioni, endpoint, limiti o disponibilita del servizio;
-- IGM potrebbe non gradire un uso del nome "Verto" in un plugin pubblico,
+- IGM potrebbe non gradire un uso del nome "GeoBridge" in un plugin pubblico,
   anche se usato in senso descrittivo;
 - l'uso intensivo o automatizzato potrebbe essere considerato eccessivo o non
   conforme alle condizioni d'uso;
@@ -82,7 +82,7 @@ restano rischi residui:
 
 ## Misure gia adottate nel plugin
 
-- Nome diverso da "IGMI Verto Online": "VertoBridge Italia".
+- Nome diverso da "IGMI servizio API IGM": "GeoBridgeIT".
 - Metadata e interfaccia dichiarano che il client e' non ufficiale.
 - NOTICE.md attribuisce il servizio a IGM e chiarisce la non affiliazione.
 - La scheda Info dichiara autore client, licenza del client, titolarita IGM e
@@ -96,8 +96,8 @@ restano rischi residui:
 Per minimizzare il rischio, pubblicare il plugin solo se restano queste
 condizioni:
 
-1. nome pubblico: "VertoBridge Italia";
-2. descrizione pubblica: "client QGIS non ufficiale per Verto Online API";
+1. nome pubblico: "GeoBridgeIT";
+2. descrizione pubblica: "client QGIS non ufficiale per API IGM";
 3. nessun logo, stemma o marchio grafico IGM;
 4. inclusione obbligatoria di NOTICE.md e di questo file;
 5. link alle fonti ufficiali IGM nella descrizione dello store;
@@ -115,25 +115,25 @@ basso sulla base del manuale API, ma non e' giuridicamente "a rischio zero".
 
 ## Bozza messaggio da inviare a IGM
 
-Oggetto: Richiesta conferma per pubblicazione client QGIS non ufficiale VertoBridge Italia
+Oggetto: Richiesta conferma per pubblicazione client QGIS non ufficiale GeoBridgeIT
 
 Buongiorno,
 
 sono Dott. Sarino Alfonso Grande. Vorrei pubblicare un plugin QGIS denominato
-"VertoBridge Italia", rilasciato con licenza GPL-2.0-or-later, che funziona
-come client non ufficiale delle API pubbliche Verto Online documentate alla
+"GeoBridgeIT", rilasciato con licenza GPL-2.0-or-later, che funziona
+come client non ufficiale delle API pubbliche servizio API IGM documentate alla
 pagina:
 
 https://igmi.esercito.difesa.it/servizi/verto-online/
 
 Il plugin non include software, dati, loghi o stemmi IGM. Si limita a inviare
-richieste JSON all'endpoint pubblico Verto Online e a caricare in QGIS i
+richieste JSON all'endpoint pubblico servizio API IGM e a caricare in QGIS i
 risultati della conversione. Nella documentazione e nell'interfaccia verra'
-indicato chiaramente che il servizio Verto Online e' di titolarita IGM e che il
+indicato chiaramente che il servizio servizio API IGM e' di titolarita IGM e che il
 plugin non e' sviluppato, approvato, certificato o supportato da IGM.
 
 Chiedo cortesemente conferma che la pubblicazione di questo client QGIS non
-ufficiale sia compatibile con le condizioni d'uso del servizio Verto Online,
+ufficiale sia compatibile con le condizioni d'uso del servizio servizio API IGM,
 oppure eventuali indicazioni da rispettare prima della pubblicazione.
 
 Cordiali saluti

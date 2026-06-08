@@ -1,0 +1,18 @@
+[general]
+name=VertoBridge Italia
+qgisMinimumVersion=3.22
+qgisMaximumVersion=4.99
+description=IT: Client QGIS non ufficiale per usare le API Verto Online (IGM): conversione di coordinate e layer vettoriali. Coadiuvato da AI. / EN: Unofficial QGIS client for Verto Online APIs (IGM): coordinates and vector layers conversion. Assisted by AI.
+version=0.1.0
+author=Dott. Sarino Alfonso Grande
+email=sino.grande@gmail.com
+homepage=https://igmi.esercito.difesa.it/servizi/verto-online/
+tracker=https://igmi.esercito.difesa.it/servizi/verto-online/
+repository=
+category=Vector
+tags=verto,coordinate,crs,epsg,roma40,ed50,etrs89,rdn2008,qgis4,qt6,italia
+icon=icon.svg
+license=GPL-2.0-or-later
+experimental=True
+deprecated=False
+about=IT: VertoBridge Italia e' un client QGIS non ufficiale. Il codice del plugin e' distribuito sotto licenza GPL-2.0-or-later. IMPORTANTE: L'autore non si appropria ne' rivendica alcun diritto sui prodotti IGM. Il servizio Verto Online, l'infrastruttura, il marchio e le elaborazioni sono e restano di esclusiva proprieta' dell'Istituto Geografico Militare. Sviluppo coadiuvato da AI. EN: VertoBridge Italia is an unofficial QGIS client. The plugin code is licensed under GPL-2.0-or-later. IMPORTANT: The author does not appropriate or claim any rights over IGM products. The Verto Online service, infrastructure, brand, and processing results are and remain the exclusive property of the Italian Military Geographic Institute. Development assisted by AI.

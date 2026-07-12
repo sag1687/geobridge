@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""QGIS plugin bootstrap for GeoBridgeIT."""
+"""QGIS plugin bootstrap for GeoBridge."""
 
 from __future__ import annotations
 
@@ -11,21 +11,23 @@ from .dialog import GeoBridgeDialog
 from .qt_compat import QAction
 
 
-class GeoBridgeITPlugin:
+class GeoBridgePlugin:
     def __init__(self, iface):
         self.iface = iface
         self.action = None
         self.dialog = None
-        self.menu_name = "&GeoBridgeIT"
+        self.menu_name = "&GeoBridge"
 
     def initGui(self):
         icon_path = os.path.join(os.path.dirname(__file__), "icon.svg")
         self.action = QAction(
-            QIcon(icon_path), "GeoBridgeIT", self.iface.mainWindow()
+            QIcon(icon_path), "GeoBridge", self.iface.mainWindow()
         )
-        self.action.setObjectName("geobridgeit_action")
+        self.action.setObjectName("geobridge_action")
         self.action.setToolTip(
-            "Client QGIS non ufficiale per conversioni tramite API servizio API IGM"
+            "Client QGIS non ufficiale per conversioni tramite "
+            "API servizio API IGM / Unofficial QGIS client for "
+            "conversions through the IGM API service"
         )
         self.action.triggered.connect(self.run)
         self.iface.addToolBarIcon(self.action)

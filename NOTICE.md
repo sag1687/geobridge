@@ -2,7 +2,7 @@
 
 ## Paternita, titolarita e non affiliazione
 
-GeoBridgeIT e' un client QGIS non ufficiale, indipendente, sviluppato
+GeoBridge e' un client QGIS non ufficiale, indipendente, sviluppato
 da Dott. Sarino Alfonso Grande.
 
 Il plugin usa il servizio API IGM dell'Istituto Geografico Militare:
@@ -13,7 +13,7 @@ Endpoint API:
 
 https://igmi.esercito.difesa.it/porta-magna/wps/volapi
 
-Il servizio servizio API IGM, il software sottostante, l'infrastruttura, le API,
+Il servizio API IGM, il software sottostante, l'infrastruttura, le API,
 le denominazioni istituzionali e l'implementazione restano di titolarita
 dell'Istituto Geografico Militare. Questo plugin non e' sviluppato,
 approvato, certificato, distribuito, garantito o supportato da IGM e non

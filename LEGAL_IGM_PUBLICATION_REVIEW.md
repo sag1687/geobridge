@@ -2,7 +2,7 @@
 
 Data verifica: 2026-06-08
 
-Plugin: GeoBridgeIT
+Plugin: GeoBridge
 
 Autore client: Dott. Sarino Alfonso Grande
 
@@ -17,7 +17,7 @@ pubblicazione resta comunque da fare con prudenza e alle condizioni sotto
 indicate, purche' il plugin:
 
 - non si presenti come prodotto ufficiale IGM;
-- riporti in modo chiaro la titolarita IGM del servizio servizio API IGM;
+- riporti in modo chiaro la titolarita IGM del servizio API IGM;
 - rispetti le condizioni d'uso pubblicate da IGM;
 - non usi loghi, stemmi o segni istituzionali IGM senza autorizzazione;
 - non sovraccarichi il servizio e non aggiri limiti tecnici o condizioni;
@@ -55,11 +55,11 @@ pagine web e plugin per software GIS. Questo e' l'elemento piu' favorevole
 alla pubblicazione del plugin, perche' il caso d'uso del client QGIS rientra
 direttamente nel tipo di integrazione descritto.
 
-Il plugin non incorpora software IGM, non replica il servizio servizio API IGM e
+Il plugin non incorpora software IGM, non replica il servizio API IGM e
 non include dati IGM. Si limita a inviare richieste al servizio remoto
 documentato e a mostrare o trasformare localmente il risultato.
 
-Il plugin usa un nome distinto, "GeoBridgeIT", e deve mantenere sempre
+Il plugin usa un nome distinto, "GeoBridge", e deve mantenere sempre
 la dicitura "client QGIS non ufficiale". Questo riduce il rischio di
 confusione con un prodotto IGM ufficiale.
 
@@ -82,7 +82,7 @@ restano rischi residui:
 
 ## Misure gia adottate nel plugin
 
-- Nome diverso da "IGMI servizio API IGM": "GeoBridgeIT".
+- Nome diverso da "IGMI servizio API IGM": "GeoBridge".
 - Metadata e interfaccia dichiarano che il client e' non ufficiale.
 - NOTICE.md attribuisce il servizio a IGM e chiarisce la non affiliazione.
 - La scheda Info dichiara autore client, licenza del client, titolarita IGM e
@@ -96,7 +96,7 @@ restano rischi residui:
 Per minimizzare il rischio, pubblicare il plugin solo se restano queste
 condizioni:
 
-1. nome pubblico: "GeoBridgeIT";
+1. nome pubblico: "GeoBridge";
 2. descrizione pubblica: "client QGIS non ufficiale per API IGM";
 3. nessun logo, stemma o marchio grafico IGM;
 4. inclusione obbligatoria di NOTICE.md e di questo file;
@@ -115,12 +115,12 @@ basso sulla base del manuale API, ma non e' giuridicamente "a rischio zero".
 
 ## Bozza messaggio da inviare a IGM
 
-Oggetto: Richiesta conferma per pubblicazione client QGIS non ufficiale GeoBridgeIT
+Oggetto: Richiesta conferma per pubblicazione client QGIS non ufficiale GeoBridge
 
 Buongiorno,
 
 sono Dott. Sarino Alfonso Grande. Vorrei pubblicare un plugin QGIS denominato
-"GeoBridgeIT", rilasciato con licenza GPL-2.0-or-later, che funziona
+"GeoBridge", rilasciato con licenza GPL-2.0-or-later, che funziona
 come client non ufficiale delle API pubbliche servizio API IGM documentate alla
 pagina:
 
@@ -129,11 +129,11 @@ https://igmi.esercito.difesa.it/servizi/verto-online/
 Il plugin non include software, dati, loghi o stemmi IGM. Si limita a inviare
 richieste JSON all'endpoint pubblico servizio API IGM e a caricare in QGIS i
 risultati della conversione. Nella documentazione e nell'interfaccia verra'
-indicato chiaramente che il servizio servizio API IGM e' di titolarita IGM e che il
+indicato chiaramente che il servizio API IGM e' di titolarita IGM e che il
 plugin non e' sviluppato, approvato, certificato o supportato da IGM.
 
 Chiedo cortesemente conferma che la pubblicazione di questo client QGIS non
-ufficiale sia compatibile con le condizioni d'uso del servizio servizio API IGM,
+ufficiale sia compatibile con le condizioni d'uso del servizio API IGM,
 oppure eventuali indicazioni da rispettare prima della pubblicazione.
 
 Cordiali saluti

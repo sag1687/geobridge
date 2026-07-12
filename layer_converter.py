@@ -43,7 +43,9 @@ def convert_vector_layer(
         raise LayerConversionError("Layer sorgente non valido")
 
     features = list(
-        source_layer.selectedFeatures() if selected_only else source_layer.getFeatures()
+        source_layer.selectedFeatures()
+        if selected_only
+        else source_layer.getFeatures()
     )
     if not features:
         raise LayerConversionError("Nessuna feature da convertire")
@@ -61,11 +63,15 @@ def convert_vector_layer(
             all_coords.append({"e": vertex.x(), "n": vertex.y()})
         if progress:
             progress(
-                "Lettura geometrie: feature %s di %s" % (index, len(features)), 0, 0
+                "Lettura geometrie: feature %s di %s" % (index, len(features)),
+                0,
+                0,
             )
 
     if not all_coords:
-        raise LayerConversionError("Le feature non contengono vertici convertibili")
+        raise LayerConversionError(
+            "Le feature non contengono vertici convertibili"
+        )
 
     converted_coords = client.convert_many(
         in_epsg,
@@ -79,11 +85,15 @@ def convert_vector_layer(
     output_layer = _make_memory_layer(
         source_layer,
         int(out_epsg),
-        output_name or "%s - GeoBridge EPSG:%s" % (source_layer.name(), out_epsg),
+        output_name
+        or "%s - GeoBridge EPSG:%s" % (source_layer.name(), out_epsg),
     )
     provider = output_layer.dataProvider()
     provider.addAttributes(
-        [source_layer.fields().at(i) for i in range(source_layer.fields().count())]
+        [
+            source_layer.fields().at(i)
+            for i in range(source_layer.fields().count())
+        ]
     )
     output_layer.updateFields()
     output_fields = output_layer.fields()
@@ -103,7 +113,8 @@ def convert_vector_layer(
         output_features.append(output_feature)
         if progress:
             progress(
-                "Creazione layer convertito: feature %s di %s" % (index, len(features)),
+                "Creazione layer convertito: feature %s di %s"
+                % (index, len(features)),
                 index,
                 len(features),
             )
@@ -120,13 +131,20 @@ def convert_vector_layer(
 def _make_memory_layer(source_layer, out_epsg, name):
     wkb_name = QgsWkbTypes.displayString(source_layer.wkbType())
     if not wkb_name or wkb_name.lower() == "unknown":
-        wkb_name = QgsWkbTypes.geometryDisplayString(source_layer.geometryType())
+        wkb_name = QgsWkbTypes.geometryDisplayString(
+            source_layer.geometryType()
+        )
     crs = QgsCoordinateReferenceSystem("EPSG:%s" % out_epsg)
     layer = QgsVectorLayer(
-        "%s?crs=%s" % (wkb_name, crs.authid() or "EPSG:%s" % out_epsg), name, "memory"
+        "%s?crs=%s"
+        % (wkb_name, crs.authid() or "EPSG:%s" % out_epsg),
+        name,
+        "memory",
     )
     if not layer.isValid():
-        raise LayerConversionError("Impossibile creare il layer temporaneo di output")
+        raise LayerConversionError(
+            "Impossibile creare il layer temporaneo di output"
+        )
     return layer
 
 
@@ -142,13 +160,17 @@ def _replace_xy(point, coord):
 
 def _transform_geometry_xy(geometry, coord_iter):
     if hasattr(geometry, "transformVertices"):
-        geometry.transformVertices(lambda point: _replace_xy(point, next(coord_iter)))
+        geometry.transformVertices(
+            lambda point: _replace_xy(point, next(coord_iter))
+        )
         return
 
     vertex_count = sum(1 for _ in geometry.vertices())
     for vertex_index in range(vertex_count):
         coord = next(coord_iter)
-        moved = geometry.moveVertex(float(coord["e"]), float(coord["n"]), vertex_index)
+        moved = geometry.moveVertex(
+            float(coord["e"]), float(coord["n"]), vertex_index
+        )
         if not moved:
             raise LayerConversionError(
                 "Impossibile aggiornare il vertice %s" % vertex_index

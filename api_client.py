@@ -5,7 +5,9 @@ from __future__ import annotations
 
 import json
 import socket
+import ssl
 import urllib.error
+import urllib.parse
 import urllib.request
 
 
@@ -49,7 +51,9 @@ def normalize_srs_list(values):
         normalized.append(
             {
                 "epsg": epsg,
-                "descrizione": str(item.get("descrizione", "EPSG:%s" % epsg)).strip(),
+                "descrizione": str(
+                    item.get("descrizione", "EPSG:%s" % epsg)
+                ).strip(),
             }
         )
     return normalized
@@ -62,11 +66,13 @@ class ApiClient:
     even though the public manual says they are ignored for now.
     """
 
-    def __init__(self, api_url=DEFAULT_API_URL, timeout=30, user="qgis", key="qgis"):
+    def __init__(
+        self, api_url=DEFAULT_API_URL, timeout=30, user=None, key=None
+    ):
         self.api_url = api_url
         self.timeout = timeout
-        self.user = user or "qgis"
-        self.key = key or "qgis"
+        self.user = user or ""
+        self.key = key or ""
 
     def info(self):
         data = self._post_json({"richiesta": "info"})
@@ -90,7 +96,9 @@ class ApiClient:
         }
         data = self._post_json(payload)
         if data.get("stato") != "successo":
-            message = data.get("messaggio") or "Conversione GeoBridge non riuscita"
+            message = data.get("messaggio") or (
+                "Conversione GeoBridge non riuscita"
+            )
             where = data.get("dove")
             if where:
                 message = "%s: %s" % (where, message)
@@ -103,10 +111,18 @@ class ApiClient:
                 "Risposta API incoerente: %s coordinate ricevute, %s attese"
                 % (len(converted), len(coordinates))
             )
-        return [{"e": float(coord["e"]), "n": float(coord["n"])} for coord in converted]
+        return [
+            {"e": float(coord["e"]), "n": float(coord["n"])}
+            for coord in converted
+        ]
 
     def convert_many(
-        self, in_epsg, out_epsg, coordinates, max_per_request=32000, progress=None
+        self,
+        in_epsg,
+        out_epsg,
+        coordinates,
+        max_per_request=32000,
+        progress=None,
     ):
         if max_per_request <= 0:
             max_per_request = 32000
@@ -121,16 +137,25 @@ class ApiClient:
                     start,
                     total,
                 )
-            converted.extend(self.convert(in_epsg, out_epsg, coordinates[start:end]))
+            converted.extend(
+                self.convert(in_epsg, out_epsg, coordinates[start:end])
+            )
             if progress:
                 progress(
-                    "Ricevute coordinate %s-%s di %s" % (start + 1, end, total),
+                    "Ricevute coordinate %s-%s di %s"
+                    % (start + 1, end, total),
                     end,
                     total,
                 )
         return converted
 
     def _post_json(self, payload):
+        parsed = urllib.parse.urlparse(self.api_url)
+        if parsed.scheme.lower() not in ("http", "https"):
+            raise ValueError(
+                "Schema URL non supportato, consentiti solo http e https."
+            )
+
         body = json.dumps(payload, ensure_ascii=False).encode("utf-8")
         request = urllib.request.Request(
             self.api_url,
@@ -138,20 +163,28 @@ class ApiClient:
             headers={
                 "Accept": "application/json",
                 "Content-Type": "application/json; charset=utf-8",
-                "User-Agent": "QGIS-GeoBridgeIT/0.1",
+                "User-Agent": "QGIS-GeoBridge/0.1",
             },
             method="POST",
         )
+        ssl_context = ssl.create_default_context()
+        opener = urllib.request.build_opener(
+            urllib.request.HTTPHandler(),
+            urllib.request.HTTPSHandler(context=ssl_context),
+        )
         try:
-            with urllib.request.urlopen(request, timeout=self.timeout) as response:
+            with opener.open(request, timeout=self.timeout) as response:
                 text = response.read().decode("utf-8")
         except urllib.error.HTTPError as exc:
             detail = exc.read().decode("utf-8", errors="replace")
             raise ApiError(
-                "Errore HTTP %s dal servizio GeoBridge: %s" % (exc.code, detail)
+                "Errore HTTP %s dal servizio GeoBridge: %s"
+                % (exc.code, detail)
             ) from exc
         except (urllib.error.URLError, socket.timeout) as exc:
-            raise ApiError("Servizio GeoBridge non raggiungibile: %s" % exc) from exc
+            raise ApiError(
+                "Servizio GeoBridge non raggiungibile: %s" % exc
+            ) from exc
         try:
             return json.loads(text)
         except ValueError as exc:

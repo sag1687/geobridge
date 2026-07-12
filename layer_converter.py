@@ -85,8 +85,8 @@ def convert_vector_layer(
     output_layer = _make_memory_layer(
         source_layer,
         int(out_epsg),
-        output_name
-        or "%s - GeoBridge EPSG:%s" % (source_layer.name(), out_epsg),
+        output_name or
+        "%s - GeoBridge EPSG:%s" % (source_layer.name(), out_epsg),
     )
     provider = output_layer.dataProvider()
     provider.addAttributes(

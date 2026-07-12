@@ -3,13 +3,14 @@ name=GeoBridge
 qgisMinimumVersion=3.22
 qgisMaximumVersion=4.99
 description=IT: Client QGIS non ufficiale per usare le API servizio API IGM (IGM): conversione di coordinate e layer vettoriali. Coadiuvato da AI. / EN: Unofficial QGIS client for API IGMs (IGM): coordinates and vector layers conversion. Assisted by AI.
-version=1.2.1
+version=1.2.2
 author=Dott. Sarino Alfonso Grande
 email=sino.grande@gmail.com
 homepage=https://sinocloud.it
 tracker=https://github.com/sag1687/geobridge/issues
 repository=https://github.com/sag1687/geobridge
-changelog=1.2.1 - Rimossi file residui non utilizzati dal codice (loghi di altri plugin, client legacy). / Removed unused legacy files not referenced by the code (other plugins' logos, legacy client module).
+changelog=1.2.2 - Corretto W503 (line break before binary operator) in plugin_hub.py e layer_converter.py; rimosso file nascosto .qgis_plugin_version generato erroneamente dentro il pacchetto dalla pipeline di pubblicazione. / Fixed W503 (line break before binary operator) in plugin_hub.py and layer_converter.py; removed hidden .qgis_plugin_version file that the publish pipeline was mistakenly bundling into the package.
+    1.2.1 - Rimossi file residui non utilizzati dal codice (loghi di altri plugin, client legacy). / Removed unused legacy files not referenced by the code (other plugins' logos, legacy client module).
     1.2.0 - Interfaccia bilingue IT/EN con selettore a bandiere, tema scuro slate-blue condiviso della famiglia SinoCloud, menu a tendina nella scheda Info con gli altri plugin dell'autore (link GitHub), homepage e tracker aggiornati, pulizia file di sviluppo. / Bilingual IT/EN interface with flag toggle, shared SinoCloud slate-blue dark theme, Info tab drop-down with the author's other plugins (GitHub links), homepage and tracker updated, development files cleanup.
     1.1.0 - Prima release pubblica. / First public release.
 category=Vector

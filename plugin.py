@@ -42,7 +42,4 @@ class GeoBridgePlugin:
 
     def run(self):
         self.dialog = GeoBridgeDialog(self.iface)
-        if hasattr(self.dialog, "exec"):
-            self.dialog.exec()
-        else:
-            self.dialog.exec_()
+        self.dialog.exec()

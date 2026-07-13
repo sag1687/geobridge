@@ -2,15 +2,15 @@
 name=GeoBridge
 qgisMinimumVersion=3.22
 qgisMaximumVersion=4.99
-description=IT: Client QGIS non ufficiale per usare le API servizio API IGM (IGM): conversione di coordinate e layer vettoriali. Coadiuvato da AI. / EN: Unofficial QGIS client for API IGMs (IGM): coordinates and vector layers conversion. Assisted by AI.
-version=1.2.4
-supportsQt6=True
+description=IT: Client non ufficiale per le API IGM: conversione di coordinate e layer vettoriali tra datum italiani. / EN: Unofficial client for the IGM API: coordinate and vector layer conversion between Italian datums.
+version=1.3.0
 author=Dott. Sarino Alfonso Grande
 email=sino.grande@gmail.com
 homepage=https://sinocloud.it
 tracker=https://github.com/sag1687/geobridge/issues
 repository=https://github.com/sag1687/geobridge
-changelog=1.2.4 - Audit di sicurezza e compatibilità Qt6: rimossa la chiamata exec_() (API eliminata in Qt6) in plugin.py, verificati client HTTP (verifica certificati SSL attiva, timeout, whitelist schema) e helper enum Qt5/Qt6; aggiunto il flag ufficiale supportsQt6. / Security and Qt6 compatibility audit: removed the exec_() call (API deleted in Qt6) in plugin.py, verified HTTP client (SSL certificate verification on, timeouts, scheme whitelist) and Qt5/Qt6 enum helpers; added the official supportsQt6 flag.
+changelog=1.3.0 - IT: Compatibilita' Qt6/QGIS 4 verificata integralmente sull'ambiente reale (QGIS 4.2, Qt 6.10): eliminati tutti gli enum in forma non-scoped, test automatico di caricamento superato; rimosso il flag supportsQt6 (non piu' riconosciuto da QGIS); nuova descrizione breve bilingue. / EN: Qt6/QGIS 4 compatibility fully verified on a real environment (QGIS 4.2, Qt 6.10): removed every non-scoped enum, automated load test passed; dropped the supportsQt6 flag (no longer recognised by QGIS); new short bilingual description.
+    1.2.4 - Audit di sicurezza e compatibilità Qt6: rimossa la chiamata exec_() (API eliminata in Qt6) in plugin.py, verificati client HTTP (verifica certificati SSL attiva, timeout, whitelist schema) e helper enum Qt5/Qt6; aggiunto il flag ufficiale supportsQt6. / Security and Qt6 compatibility audit: removed the exec_() call (API deleted in Qt6) in plugin.py, verified HTTP client (SSL certificate verification on, timeouts, scheme whitelist) and Qt5/Qt6 enum helpers; added the official supportsQt6 flag.
     1.2.3 - Aggiunti tag (igm, verto, datum, reproject, conversione) per migliorare la visibilita' nello store QGIS. / Added tags (igm, verto, datum, reproject, conversione) to improve discoverability on the QGIS store.
     1.2.2 - Corretto W503 (line break before binary operator) in plugin_hub.py e layer_converter.py; rimosso file nascosto .qgis_plugin_version generato erroneamente dentro il pacchetto dalla pipeline di pubblicazione. / Fixed W503 (line break before binary operator) in plugin_hub.py and layer_converter.py; removed hidden .qgis_plugin_version file that the publish pipeline was mistakenly bundling into the package.
     1.2.1 - Rimossi file residui non utilizzati dal codice (loghi di altri plugin, client legacy). / Removed unused legacy files not referenced by the code (other plugins' logos, legacy client module).
